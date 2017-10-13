@@ -1,0 +1,16 @@
+{
+    "extensionName" : {
+        "message" : "ClipBeard",
+        "description" : "Name of the Extension"
+    },
+
+    "extensionDesc" : {
+        "message" : "Save frequently used snippets for later",
+        "description" : "Description of the Extension"
+    },
+
+    "contextMenuLabel" : {
+        "message" : "Save to Clipbeard",
+        "description" : "User facing text for context menu"
+    }
+}

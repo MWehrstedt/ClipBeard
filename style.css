@@ -1,7 +1,43 @@
 /* For Styling porpoises. May come later. */
 html, body {
     width:320px;
-    height:320px;
+    height:500px;
     margin: 0;
+    text-align: center;
+    background-color: #f2f2f2;
+    padding: 0;
 }
 
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-size: 20pt;
+}
+
+button {
+    background-color: transparent;
+    font-size: 12pt;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    height: 48px;
+    min-width: 48px;
+}
+
+button:hover {
+    background-color: #939393;
+}
+
+div, p, ul {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+li {
+    list-style-type: none;
+}
+
+li:hover {
+    background-color: #ffffff;
+}
+
+.headerContainer {
+    float: none;
+}

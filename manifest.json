@@ -1,13 +1,17 @@
 {
 "manifest_version": 2,
-    "name": "ClipBeard",
+    "name": "__MSG_extensionName__",
 	"author": "MWehrstedt",
-    "description": "Show frequently used snippets",
+    "description": "__MSG_extensionDesc__",
+    "default_locale":"en_US",
     "version": "0.0.0.1",
     "icons":{
         "24":"icons/icon-24.png",
         "44":"icons/icon-44.png"
     },
+    "permissions": [
+        "storage", "contextMenus"
+    ],
     "browser_action": {
         "default_icon": {
             "20": "icons/icon-20.png",
@@ -16,5 +20,9 @@
 
         "default_title": "ClipBeard",
         "default_popup": "canvas.html"
+    },
+    "background": {
+        "scripts":["background.js"],
+        "persistent": true
     }
 }
