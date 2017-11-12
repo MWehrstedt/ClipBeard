@@ -30,12 +30,42 @@ div, p, ul {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+ul {
+    padding-left: 0px;
+}
+
 li {
     list-style-type: none;
+    padding: 5px;
+    padding-right: 15px;
+    
 }
 
 li:hover {
     background-color: #ffffff;
+}
+
+.itemArea {
+    display: flex;
+}
+
+.itemEditArea {
+    opacity: 0.5;
+}
+
+.itemEditButton {
+    height: 35px;
+    width: 35px;
+    background-image:url('/images/remove.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.itemContentArea {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .headerContainer {
