@@ -9,7 +9,10 @@ html, body {
 }
 
 h1 {
-    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    text-align: left;
+    padding-left: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
     font-size: 20pt;
 }
 
@@ -22,8 +25,16 @@ button {
     min-width: 48px;
 }
 
+small {
+    font-size: 10pt;
+}
+
 button:hover {
-    background-color: #939393;
+    background-color: #ffffff;
+}
+
+button:pressed {
+    background-color: #bbbbbb;
 }
 
 div, p, ul {
@@ -50,13 +61,17 @@ li:hover {
 }
 
 .itemEditArea {
+    opacity: 0.75;
+}
+
+.itemEditArea:hover {
     opacity: 0.5;
 }
 
 .itemEditButton {
     height: 35px;
     width: 35px;
-    background-image:url('/images/remove.png');
+    background-image:url('/images/removeSingle.png');
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -66,6 +81,24 @@ li:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#inputTextbox{
+    width: 65%
+}
+
+#clearBtn {
+    opacity: 0.75;
+    background-image:url('/images/remove.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#addBtn {
+    opacity: 0.75;
+    background-image:url('/images/add.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .headerContainer {

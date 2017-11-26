@@ -12,5 +12,15 @@
     "contextMenuLabel" : {
         "message" : "In ClipBeard speichern",
         "description" : "User facing text for context menu"
+    },
+
+    "canvasRemoveTooltip" : {
+        "message" : "Entfernen",
+        "description" : "Tooltip for remove button"
+    },
+
+    "canvasEmptyList" : {
+        "message" : "Deine Liste ist leer",
+        "description" : "User facing string for empty snippet list"
     }
 }

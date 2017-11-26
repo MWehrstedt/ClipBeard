@@ -14,5 +14,6 @@ browser.contextMenus.onClicked.addListener(function (info, tab) {
         var snippetText = info.selectionText;
         var snippetHeader = new Date().toUTCString();
         browser.storage.sync.set({ [snippetHeader]: snippetText });
+        addSnippetToContextMenu(info.selectionText);
     }
 });

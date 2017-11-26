@@ -1,7 +1,7 @@
 /* For Jenny, my Queen */
 
 /* variables */
-var count = 0;
+let count = 0;
 
 /* add event listeners */
 addBtn.addEventListener('click', addSnippet);
@@ -11,8 +11,6 @@ snippetList.addEventListener('click', function (e) {
     // check if list item is clicked, do nothing otherwise
     if (e.target && e.target.nodeName == 'DIV') {
         // get text to copy
-        console.log(e.target);
-
         var copyBody = e.target.innerHTML;
 
         // create a temporary textbox to copy text from
@@ -23,11 +21,8 @@ snippetList.addEventListener('click', function (e) {
 
         // dispatch copy event
         try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copied ' + copyBody + ' command was ' + msg);
+            document.execCommand('copy');
         } catch (err) {
-            console.log('Unable to copy' + copyBody + 'to clipboard');
         }
 
         // remove temporary textbox
@@ -38,10 +33,21 @@ snippetList.addEventListener('click', function (e) {
 initialize();
 
 function initialize() {
+    //count = 0;
+    // set text for queue empty text
+    var emptyLabel = document.getElementById('listEmptyString');
+    if(emptyLabel)
+    {
+        emptyLabel.style.display = 'block';
+        emptyLabel.innerText=browser.i18n.getMessage('canvasEmptyList');
+    }
+
     // load storage items to items list
     var storageItems = browser.storage.sync.get(function (items) {
-        for (var element in items)
+        for (var element in items) {
             addSnippetToList(items[element], element);
+            emptyLabel.style.display = 'none';
+        }
     });
 }
 
@@ -80,6 +86,9 @@ function addSnippetToList(text, nid) {
     var sContAttr = document.createAttribute('class');
     sContAttr.value = 'itemContentArea';
     sContentArea.setAttributeNode(sContAttr);
+    var sContTitleAttr = document.createAttribute('title');
+    sContTitleAttr.value = text;
+    sContentArea.setAttributeNode(sContTitleAttr);
     sContentArea.innerText = text;
 
     // edit button area
@@ -93,9 +102,11 @@ function addSnippetToList(text, nid) {
     var sEditButtonAttr = document.createAttribute('class');
     sEditButtonAttr.value = 'itemEditButton';
     sEditButton.setAttributeNode(sEditButtonAttr);
-    var sEditButtonIdAttr = document.createAttribute('id');
-    sEditButtonIdAttr.value = nid;
-    sEditButton.setAttributeNode(sEditButtonIdAttr);
+    
+    var sEditButtonTitleAttr = document.createAttribute('title');
+    sEditButtonTitleAttr.value = browser.i18n.getMessage('canvasRemoveTooltip');
+    sEditButton.setAttributeNode(sEditButtonTitleAttr);
+    
     sEditButton.addEventListener('click', function() {
         browser.storage.sync.remove(nid);
 
@@ -118,10 +129,26 @@ function addSnippetToList(text, nid) {
 
     // Clear textbox
     document.getElementById('inputTextbox').value = '';
+
+    // Hide list empty label
+    var emptyLabel = document.getElementById('listEmptyString');
+    if(emptyLabel)
+    {
+        emptyLabel.style.display = 'none';
+    }
 }
 
 function clearSnippets() {
     browser.storage.sync.clear();
+    count = 0;
+
+    var emptyLabel = document.getElementById('listEmptyString');
+    if(emptyLabel)
+    {
+        emptyLabel.style.display = 'block';
+    }
+
+
     var list = document.getElementById('snippetList');
     while (list.firstChild)
         list.removeChild(list.firstChild);
