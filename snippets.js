@@ -27,6 +27,9 @@ snippetList.addEventListener('click', function (e) {
 
         // remove temporary textbox
         document.body.removeChild(tempTextbox);
+
+        // show successful message
+        showAndHideMessagebox(copyBody);
     }
 });
 
@@ -36,11 +39,14 @@ function initialize() {
     //count = 0;
     // set text for queue empty text
     var emptyLabel = document.getElementById('listEmptyString');
-    if(emptyLabel)
-    {
+    if (emptyLabel) {
         emptyLabel.style.display = 'block';
-        emptyLabel.innerText=browser.i18n.getMessage('canvasEmptyList');
+        emptyLabel.innerText = browser.i18n.getMessage('canvasEmptyList');
     }
+
+    // set content for version label
+    var versionLabel = document.getElementById('versionLabel');
+    versionLabel.innerText = 'Version ' + browser.runtime.getManifest().version;
 
     // load storage items to items list
     var storageItems = browser.storage.sync.get(function (items) {
@@ -96,18 +102,18 @@ function addSnippetToList(text, nid) {
     var sEditAttr = document.createAttribute('class');
     sEditAttr.value = 'itemEditArea';
     sEditArea.setAttributeNode(sEditAttr);
-    
+
     // create erase button
     var sEditButton = document.createElement('button');
     var sEditButtonAttr = document.createAttribute('class');
     sEditButtonAttr.value = 'itemEditButton';
     sEditButton.setAttributeNode(sEditButtonAttr);
-    
+
     var sEditButtonTitleAttr = document.createAttribute('title');
     sEditButtonTitleAttr.value = browser.i18n.getMessage('canvasRemoveTooltip');
     sEditButton.setAttributeNode(sEditButtonTitleAttr);
-    
-    sEditButton.addEventListener('click', function() {
+
+    sEditButton.addEventListener('click', function () {
         browser.storage.sync.remove(nid);
 
         // redraw list
@@ -116,11 +122,11 @@ function addSnippetToList(text, nid) {
             list.removeChild(list.firstChild);
 
         initialize();
-        console.log('Removed entry ' + this.id );
+        console.log('Removed entry ' + this.id);
     }, false);
 
     sEditArea.appendChild(sEditButton);
-    
+
     // add created nodes to parent node
     sItem.appendChild(sContentArea);
     sItem.appendChild(sEditArea);
@@ -132,8 +138,7 @@ function addSnippetToList(text, nid) {
 
     // Hide list empty label
     var emptyLabel = document.getElementById('listEmptyString');
-    if(emptyLabel)
-    {
+    if (emptyLabel) {
         emptyLabel.style.display = 'none';
     }
 }
@@ -143,8 +148,7 @@ function clearSnippets() {
     count = 0;
 
     var emptyLabel = document.getElementById('listEmptyString');
-    if(emptyLabel)
-    {
+    if (emptyLabel) {
         emptyLabel.style.display = 'block';
     }
 
@@ -152,4 +156,20 @@ function clearSnippets() {
     var list = document.getElementById('snippetList');
     while (list.firstChild)
         list.removeChild(list.firstChild);
+}
+
+function showAndHideMessagebox(text) {
+    var messageBox = document.getElementById('messagePanelContainer');
+    messageBox.style.display = 'block';
+    
+    var messageBoxContent = document.getElementById('messagePanelContent');
+    messageBoxContent.innerText = browser.i18n.getMessage('canvasMessageboxContent');
+
+    var messageBoxSelection = document.getElementById('messagePanelSelection');
+    messageBoxSelection.innerText = text;
+    
+    setTimeout(function () {
+        messageBox.style.display = 'none';
+    }, 1111);
+
 }

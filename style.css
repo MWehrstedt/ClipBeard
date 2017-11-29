@@ -4,10 +4,11 @@ html, body {
     height:500px;
     margin: 0;
     text-align: center;
-    background-color: #f2f2f2;
+    background-color: #f3f3f3;
     padding: 0;
 }
 
+/* Headings and text blocks */
 h1 {
     text-align: left;
     padding-left: 15px;
@@ -16,25 +17,8 @@ h1 {
     font-size: 20pt;
 }
 
-button {
-    background-color: transparent;
-    font-size: 12pt;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: none;
-    height: 48px;
-    min-width: 48px;
-}
-
 small {
     font-size: 10pt;
-}
-
-button:hover {
-    background-color: #ffffff;
-}
-
-button:pressed {
-    background-color: #bbbbbb;
 }
 
 div, p, ul {
@@ -56,6 +40,48 @@ li:hover {
     background-color: #ffffff;
 }
 
+.headerContainer {
+    float: none;
+}
+
+#listEmptyString {
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Buttons */
+button {
+    background-color: transparent;
+    font-size: 12pt;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: none;
+    height: 48px;
+    min-width: 48px;
+}
+
+button:hover {
+    background-color: #ffffff;
+}
+
+button:pressed {
+    background-color: #bbbbbb;
+}
+
+#clearBtn {
+    opacity: 0.75;
+    background-image:url('/images/remove.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#addBtn {
+    opacity: 0.75;
+    background-image:url('/images/add.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Item area */
 .itemArea {
     display: flex;
 }
@@ -87,20 +113,24 @@ li:hover {
     width: 65%
 }
 
-#clearBtn {
-    opacity: 0.75;
-    background-image:url('/images/remove.png');
-    background-repeat: no-repeat;
-    background-position: center;
+/* message box at the bottom */
+
+.messagePanel {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #1D1D1D;
+    background-color: rgb(247, 247, 247);
+    text-align: center;
+    width: 99%;
+    min-height: 50px;
+    display: none;
 }
 
-#addBtn {
-    opacity: 0.75;
-    background-image:url('/images/add.png');
-    background-repeat: no-repeat;
-    background-position: center;
+#messagePanelSelection {
+    font-style: italic;
 }
 
-.headerContainer {
-    float: none;
+#messagePanelContent {
+    font-weight: bolder;
+    
 }

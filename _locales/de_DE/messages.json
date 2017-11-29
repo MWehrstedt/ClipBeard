@@ -22,5 +22,10 @@
     "canvasEmptyList" : {
         "message" : "Deine Liste ist leer",
         "description" : "User facing string for empty snippet list"
+    },
+
+    "canvasMessageboxContent" : {
+        "message" : "Schnippsel erfolgreich kopiert",
+        "description" : "User facing message in message box"
     }
 }

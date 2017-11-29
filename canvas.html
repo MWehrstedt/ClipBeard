@@ -2,22 +2,33 @@
 
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <link href="style.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet" />
 </head>
+
 <body>
-    <h1 id="greeting">ClipBeard <small>Version 0.1</small></h1>
+    <h1 id="greeting">ClipBeard
+        <small id="versionLabel"></small>
+    </h1>
     <div class="inputArea">
         <input type="text" id="inputTextbox" placeholder="Input snippet">
         <button id="addBtn">&nbsp;</button>
         <button id="clearBtn">&nbsp;</button>
     </div>
+
+    <div class="messagePanel" id="messagePanelContainer">
+        <p id="messagePanelContent"></p>
+        <p id="messagePanelSelection"></p>
+    </div>
+
     <p id="listEmptyString"></p>
     <ul id="snippetList">
 
     </ul>
 
-    <script src="snippets.js" ></script>
+    <script src="snippets.js"></script>
+
 </body>
 
 </html>
