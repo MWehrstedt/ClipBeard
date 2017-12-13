@@ -11,6 +11,10 @@ initialize();
 
 function initialize() {
 
+    // remove badge
+    browser.browserAction.setBadgeText({text:""});
+    
+
     // bind return key to insert snippet
     var input = document.getElementById('inputTextbox');
     input.onkeydown = function (event) {

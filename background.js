@@ -3,6 +3,7 @@
 /*  ============================
     Background script file, handles context menu items
     ============================ */
+browser.browserAction.setBadgeBackgroundColor({ color: '#007f00' });
 
 // Create context menu items
 browser.contextMenus.create({
@@ -19,6 +20,10 @@ browser.contextMenus.onClicked.addListener(function (info, tab) {
         var snippetText = info.selectionText;
         var snippetHeader = new Date().toUTCString();
         browser.storage.sync.set({ [snippetHeader]: snippetText });
-        addSnippetToContextMenu(info.selectionText);
+        browser.browserAction.setBadgeText({ text: '+' });
+
+        setTimeout(function () {
+            browser.browserAction.setBadgeText({ text: "" });
+        }, 600000);
     }
 });
