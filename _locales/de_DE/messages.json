@@ -24,8 +24,8 @@
         "description" : "User facing string for empty snippet list"
     },
 
-    "canvasMessageboxContent" : {
-        "message" : "Schnippsel erfolgreich kopiert",
-        "description" : "User facing message in message box"
+    "canvasInputPlaceholder" : {
+        "message" : "Schnippsel eingeben",
+        "description" : "Placeholder text for input box"
     }
 }

@@ -1,5 +1,10 @@
 /* For Jenny, my Queen */
 
+/*  ============================
+    Background script file, handles context menu items
+    ============================ */
+
+// Create context menu items
 browser.contextMenus.create({
     id: 'clipbeardSelectionMenuItem',
     title: browser.i18n.getMessage('contextMenuLabel'),

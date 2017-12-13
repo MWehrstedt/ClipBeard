@@ -1,42 +1,28 @@
 /* For Jenny, my Queen */
 
-/* variables */
-let count = 0;
+/*  ============================
+    Main script file, handles canvas features and list management
+    ============================ */
 
-/* add event listeners */
-addBtn.addEventListener('click', addSnippet);
-clearBtn.addEventListener('click', clearSnippets);
-snippetList.addEventListener('click', function (e) {
-
-    // check if list item is clicked, do nothing otherwise
-    if (e.target && e.target.nodeName == 'DIV') {
-        // get text to copy
-        var copyBody = e.target.innerHTML;
-
-        // create a temporary textbox to copy text from
-        var tempTextbox = document.createElement('textarea');
-        tempTextbox.value = copyBody;
-        document.body.appendChild(tempTextbox);
-        tempTextbox.select();
-
-        // dispatch copy event
-        try {
-            document.execCommand('copy');
-        } catch (err) {
-        }
-
-        // remove temporary textbox
-        document.body.removeChild(tempTextbox);
-
-        // show successful message
-        showAndHideMessagebox(copyBody);
-    }
-});
-
+/*  ----------------------------
+    Initialization
+    ---------------------------- */
 initialize();
 
 function initialize() {
-    //count = 0;
+
+    // bind return key to insert snippet
+    var input = document.getElementById('inputTextbox');
+    input.onkeydown = function (event) {
+
+        if (event.keyCode == 13 || event.which == 13) {
+            addSnippet();
+        }
+    }
+
+    // set placeholder text for input box
+    input.setAttribute('placeholder', browser.i18n.getMessage('canvasInputPlaceholder'));
+
     // set text for queue empty text
     var emptyLabel = document.getElementById('listEmptyString');
     if (emptyLabel) {
@@ -57,13 +43,59 @@ function initialize() {
     });
 }
 
+addBtn.addEventListener('click', addSnippet);
+clearBtn.addEventListener('click', clearSnippets);
+snippetList.addEventListener('click', function (e) {
+
+    // check if list item is clicked, do nothing otherwise
+    if (e.target && e.target.nodeName == 'DIV') {
+        // get text to copy
+        var copyBody = e.target.innerHTML;
+
+        // create a temporary textbox to copy text from
+        var tempTextbox = document.createElement('textarea');
+        tempTextbox.value = copyBody;
+        document.body.appendChild(tempTextbox);
+        tempTextbox.select();
+
+        var bgcolor = '#B8F818';
+        // dispatch copy event
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            bgcolor = '#DC2901';
+        }
+
+        // remove temporary textbox
+        document.body.removeChild(tempTextbox);
+
+        // highlight list item in green when successful
+        highlightListEntry(e.target.parentElement, 300, bgcolor, "transparent");
+    }
+});
+
+/*  ----------------------------
+    List management
+    ---------------------------- */
 function addSnippet() {
     var input = document.getElementById('inputTextbox').value;
 
     if (input) {
         saveSnippet(input);
     }
+}
 
+function clearSnippets() {
+    browser.storage.sync.clear();
+
+    var emptyLabel = document.getElementById('listEmptyString');
+    if (emptyLabel) {
+        emptyLabel.style.display = 'block';
+    }
+
+    var list = document.getElementById('snippetList');
+    while (list.firstChild)
+        list.removeChild(list.firstChild);
 }
 
 function saveSnippet(content) {
@@ -143,33 +175,12 @@ function addSnippetToList(text, nid) {
     }
 }
 
-function clearSnippets() {
-    browser.storage.sync.clear();
-    count = 0;
+function highlightListEntry(item, duration, newcolor, oldcolor) {
+    // set background color to given item
+    item.style.backgroundColor = newcolor;
 
-    var emptyLabel = document.getElementById('listEmptyString');
-    if (emptyLabel) {
-        emptyLabel.style.display = 'block';
-    }
-
-
-    var list = document.getElementById('snippetList');
-    while (list.firstChild)
-        list.removeChild(list.firstChild);
-}
-
-function showAndHideMessagebox(text) {
-    var messageBox = document.getElementById('messagePanelContainer');
-    messageBox.style.display = 'block';
-    
-    var messageBoxContent = document.getElementById('messagePanelContent');
-    messageBoxContent.innerText = browser.i18n.getMessage('canvasMessageboxContent');
-
-    var messageBoxSelection = document.getElementById('messagePanelSelection');
-    messageBoxSelection.innerText = text;
-    
+    // revert to old color after duration
     setTimeout(function () {
-        messageBox.style.display = 'none';
-    }, 1111);
-
+        item.style.backgroundColor = oldcolor;
+    }, duration);
 }

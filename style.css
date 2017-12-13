@@ -31,9 +31,8 @@ ul {
 
 li {
     list-style-type: none;
-    padding: 5px;
+    margin: 5px;
     padding-right: 15px;
-    
 }
 
 li:hover {
@@ -110,7 +109,8 @@ button:pressed {
 }
 
 #inputTextbox{
-    width: 65%
+    width: 65%;
+    height: 30px;
 }
 
 /* message box at the bottom */
