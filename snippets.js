@@ -10,10 +10,8 @@
 initialize();
 
 function initialize() {
-
     // remove badge
-    browser.browserAction.setBadgeText({text:""});
-    
+    browser.browserAction.setBadgeText({ text: "" });
 
     // bind return key to insert snippet
     var input = document.getElementById('inputTextbox');
@@ -27,16 +25,16 @@ function initialize() {
     // set placeholder text for input box
     input.setAttribute('placeholder', browser.i18n.getMessage('canvasInputPlaceholder'));
 
+    // display version number
+    var versionLabel = document.getElementById('versionLabel');
+    versionLabel.innerText = "Version " + browser.runtime.getManifest().version;
+
     // set text for queue empty text
     var emptyLabel = document.getElementById('listEmptyString');
     if (emptyLabel) {
         emptyLabel.style.display = 'block';
         emptyLabel.innerText = browser.i18n.getMessage('canvasEmptyList');
     }
-
-    // set content for version label
-    var versionLabel = document.getElementById('versionLabel');
-    versionLabel.innerText = 'Version ' + browser.runtime.getManifest().version;
 
     // load storage items to items list
     var storageItems = browser.storage.sync.get(function (items) {
@@ -45,6 +43,7 @@ function initialize() {
             emptyLabel.style.display = 'none';
         }
     });
+
 }
 
 addBtn.addEventListener('click', addSnippet);
@@ -62,19 +61,21 @@ snippetList.addEventListener('click', function (e) {
         document.body.appendChild(tempTextbox);
         tempTextbox.select();
 
-        var bgcolor = '#B8F818';
+        var success = false;
+
         // dispatch copy event
         try {
             document.execCommand('copy');
+            success = true;
         } catch (err) {
-            bgcolor = '#DC2901';
+
         }
 
         // remove temporary textbox
         document.body.removeChild(tempTextbox);
 
         // highlight list item in green when successful
-        highlightListEntry(e.target.parentElement, 300, bgcolor, "transparent");
+        highlightListEntry(e.target.parentElement, success, removeHighlightClass);
     }
 });
 
@@ -179,12 +180,25 @@ function addSnippetToList(text, nid) {
     }
 }
 
-function highlightListEntry(item, duration, newcolor, oldcolor) {
+function highlightListEntry(item, success, callback) {
     // set background color to given item
-    item.style.backgroundColor = newcolor;
+    if (success) {
+        item.classList.add('highlightSuccessClass');
+    } else {
+        item.classList.add('highlightFailureClass');
+    }
 
-    // revert to old color after duration
     setTimeout(function () {
-        item.style.backgroundColor = oldcolor;
-    }, duration);
+        callback(item, success);
+    }, 1000);
+
+}
+
+function removeHighlightClass(item, success) {
+    // Remove class from element
+    if (success) {
+        item.classList.remove('highlightSuccessClass');
+    } else {
+        item.classList.remove('highlightFailureClass');
+    }
 }

@@ -8,22 +8,35 @@
 </head>
 
 <body>
-    <h1 id="greeting">ClipBeard
-        <small id="versionLabel"></small>
-    </h1>
-    <div class="inputArea">
-        <input type="text" id="inputTextbox" placeholder="Input snippet" >
-        <button id="addBtn">&nbsp;</button>
-        <button id="clearBtn">&nbsp;</button>
+    <div class="bodyWrapper">
+
+        <div class="wrapperContent">
+            <h1 id="greeting">ClipBeard <small id="versionLabel"></small></h1>
+            <div class="inputArea">
+                <input type="text" id="inputTextbox" placeholder="Input snippet">
+                <button id="addBtn">&nbsp;</button>
+                <button id="clearBtn">&nbsp;</button>
+            </div>
+
+            <p id="listEmptyString"></p>
+            <ul id="snippetList">
+
+            </ul>
+
+            <script src="snippets.js"></script>
+
+        </div>
+        <div class="wrapperFooter">
+            <small>
+                    By MWehrstedt
+            </small>
+
+            <div class="wrapperFooterSocial">
+                    <a href="http://twitter.com/LemmyHawkins" target="_blank" title="Twitter"><img src="/images/twitter.png"></a>
+                    <a href="mailto://appdev.wehrstedt@outlook.de?subject=Clipbeard" target="_blank"><img src="/images/mail.png"></a>
+            </div>
+        </div>
     </div>
-
-    <p id="listEmptyString"></p>
-    <ul id="snippetList">
-
-    </ul>
-
-    <script src="snippets.js"></script>
-
 </body>
 
 </html>
