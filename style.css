@@ -1,4 +1,9 @@
-/* For Styling porpoises. May come later. */
+/* For Jenny, my Queen */
+
+/*  ============================
+    For Styling porpoises. May come later.
+    ============================ */
+
 html, body {
     width:320px;
     height:500px;
@@ -15,7 +20,7 @@ h1 {
     margin-top: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: normal;
-    font-size: 20pt;
+    font-size: 18pt;
 }
 
 small {
@@ -33,7 +38,6 @@ ul {
 li {
     list-style-type: none;
     margin: 5px;
-    /*padding-right: 15px;*/
 }
 
 li:hover {
