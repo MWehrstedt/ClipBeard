@@ -107,10 +107,20 @@ function saveSnippet(content) {
     // Save content to browser storage
     var snippetText = content;
     var snippetHeader = new Date().toUTCString();
-    browser.storage.sync.set({ [snippetHeader]: content });
 
-    // Add snippet to List
-    addSnippetToList(snippetText, snippetHeader);
+    if (content.length < 300) {
+        browser.storage.sync.set({ [snippetHeader]: content });
+
+        // Add snippet to List
+        addSnippetToList(snippetText, snippetHeader);
+    } else {
+         browser.browserAction.setBadgeText({ text: "X" });
+         browser.browserAction.setBadgeBackgroundColor({color: "#DC2901"});
+
+        setTimeout(function () {
+            browser.browserAction.setBadgeText({ text: "" });
+        }, 300000);
+    }
 }
 
 function addSnippetToList(text, nid) {

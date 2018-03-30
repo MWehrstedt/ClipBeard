@@ -27,15 +27,22 @@ browser.contextMenus.onClicked.addListener(function (info, tab) {
 
                     // Show a star character (unicode u+2605) on an orange background
                     browser.browserAction.setBadgeText({ text: String.fromCharCode(9733) });
-                    browser.browserAction.setBadgeBackgroundColor({color: "#FFA500"});
+                    browser.browserAction.setBadgeBackgroundColor({ color: "#FFA500" });
                     return;
                 }
             }
 
-            // Show a plus on a green background
-            browser.storage.sync.set({ [snippetHeader]: snippetText });
-            browser.browserAction.setBadgeBackgroundColor({color: "#00CC00"});
-            browser.browserAction.setBadgeText({ text: '+' });
+            if (snippetText.length < 500) {
+                // Show a plus on a green background
+                browser.storage.sync.set({ [snippetHeader]: snippetText });
+                browser.browserAction.setBadgeBackgroundColor({ color: "#00CC00" });
+                browser.browserAction.setBadgeText({ text: '+' });
+            } else {
+
+                browser.browserAction.setBadgeText({ text: String.fromCharCode(9587) });
+                browser.browserAction.setBadgeBackgroundColor({ color: "#DC2901" });
+
+            }
         });
 
 
