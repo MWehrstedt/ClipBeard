@@ -148,6 +148,10 @@ button:pressed {
     height: 25px;
 }
 
+.hiddenTextbox{
+    display: none;
+}
+
 /* Animations and smooth transitions and stuff */
 
 @keyframes highlightSuccess {

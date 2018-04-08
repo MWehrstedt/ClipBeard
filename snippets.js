@@ -58,6 +58,11 @@ snippetList.addEventListener('click', function (e) {
         // create a temporary textbox to copy text from
         var tempTextbox = document.createElement('textarea');
         tempTextbox.value = copyBody;
+
+        var tempAttribute=document.createAttribute('class');
+        tempAttribute.value='hiddenTextbox';
+        tempTextbox.setAttributeNode(tempAttribute);
+
         document.body.appendChild(tempTextbox);
         tempTextbox.select();
 
