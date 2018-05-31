@@ -66,6 +66,7 @@ snippetList.addEventListener('click', function (e) {
         document.body.appendChild(tempTextbox);
         tempTextbox.select();
 
+        console.log(tempTextbox.innerText);
         var success = false;
 
         // dispatch copy event
@@ -73,7 +74,7 @@ snippetList.addEventListener('click', function (e) {
             document.execCommand('copy');
             success = true;
         } catch (err) {
-
+            console.log(err);
         }
 
         // remove temporary textbox

@@ -170,9 +170,9 @@ button:pressed {
 
 .highlightSuccessClass {
     -webkit-animation: highlightSuccess;
-    -webkit-animation-duration: 1s;
+    -webkit-animation-duration: 0.5s;
     animation: highlightSuccess;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 
 @keyframes highlightFailure {
